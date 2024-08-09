@@ -8,9 +8,13 @@ sudo sh get-docker.sh
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
 
+# install kubectl
+# sudo snap install kubectl --classic
+
 # Start and enable Docker service
 sudo systemctl start docker
 sudo systemctl enable docker
 
 # Start Minikube using Docker driver
-sudo minikube start
+sudo usermod -aG docker ubuntu && newgrp docker
+minikube start

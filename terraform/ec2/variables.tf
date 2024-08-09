@@ -22,3 +22,8 @@ variable "public_sg_id" {
   description = "value of public security group"
   type = string
 }
+
+variable "private_key_path" {
+  description = "path to private key"
+  type = string
+}

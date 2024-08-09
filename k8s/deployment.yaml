@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: kodecamp-devops-bootcamp-app
-        image: actokuyt/kodecamp-devops-bootcamp-app:latest
+        image: actokuyt/certified-devops-app:latest
         ports:
         - containerPort: 5000
         resources:

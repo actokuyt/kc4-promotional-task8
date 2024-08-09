@@ -9,6 +9,20 @@ resource "aws_instance" "minikube_instance" {
 
   user_data = file("${path.module}/../scripts/main.sh")
 
+  provisioner "file" {
+    source      = "/Users/actokuyt/Desktop/actokuyt/kc4-promotional-task8/k8s"
+    destination = "/home/ubuntu/app"
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file(var.private_key_path)
+      host        = self.public_ip
+    }
+  }
+
+
+
   tags = {
     Name = "minikube instance"
   }
