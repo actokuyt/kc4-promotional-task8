@@ -9,7 +9,7 @@ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-
 sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
 
 # install kubectl
-# sudo snap install kubectl --classic
+sudo snap install kubectl --classic
 
 # Start and enable Docker service
 sudo systemctl start docker
