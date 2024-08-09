@@ -23,8 +23,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t your-dockerhub-username/certified-devops-app .
-          docker push your-dockerhub-username/certified-devops-app
+          docker build -t actokuyt/certified-devops-app .
+          docker push atokuyt/certified-devops-app
 
   deploy:
     needs: build
