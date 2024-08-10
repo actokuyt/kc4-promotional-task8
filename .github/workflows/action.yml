@@ -83,11 +83,11 @@ jobs:
         with:
           name: ec2-public-ip
 
-      - name: Load EC2 Public IP
-        id: load_ip
-        run: |
-          EC2_PUBLIC_IP=$(cat ec2ip.txt)
-          echo "EC2_PUBLIC_IP=$EC2_PUBLIC_IP" >> $GITHUB_ENV
+    #   - name: Load EC2 Public IP
+    #     id: load_ip
+    #     run: |
+    #       EC2_PUBLIC_IP=$(cat ec2ip.txt)
+    #       echo "EC2_PUBLIC_IP=$EC2_PUBLIC_IP" >> GITHUB_ENV
 
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
@@ -96,8 +96,9 @@ jobs:
 
       - name: Deploy to Minikube
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@$EC2_PUBLIC_IP << 'EOF'
+            EC2_PUBLIC_IP=$(cat ec2ip.txt)
+            ssh -o StrictHostKeyChecking=no ubuntu@$EC2_PUBLIC_IP << 'EOF'
             minikube start
             kubectl apply -f /home/ubuntu/app/deployment.yaml
             kubectl apply -f /home/ubuntu/app/service.yaml
-          EOF
+            EOF
