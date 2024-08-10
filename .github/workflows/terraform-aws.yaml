@@ -35,7 +35,7 @@ jobs:
       working-directory: terraform
   
     - name: Terraform Apply
-      run: terraform apply -auto-approve
+      run: terraform apply -auto-approve -var="private_key_path=private_key.pem"
       working-directory: terraform
 
     - name: Capture EC2 Public IP
