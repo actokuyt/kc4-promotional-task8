@@ -29,6 +29,7 @@ jobs:
       run: |
         echo "${{ secrets.SSH_KEY }}" > private_key.pem
         chmod 600 private_key.pem
+      working-directory: terraform
     
     - name: Terraform Init
       run: terraform init
