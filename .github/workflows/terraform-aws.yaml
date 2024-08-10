@@ -25,6 +25,11 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: eu-west-1 
         
+    - name: Write SSH private key to file
+      run: |
+        echo "${{ secrets.SSH_KEY }}" > private_key.pem
+        chmod 600 private_key.pem
+    
     - name: Terraform Init
       run: terraform init
       working-directory: terraform
