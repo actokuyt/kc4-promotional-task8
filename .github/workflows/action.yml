@@ -41,7 +41,7 @@ jobs:
 
       - name: Capture EC2 Public IP
         id: ec2_output
-        run: echo $(terraform output -raw ec2_public_ip) >> ec2ip.txt
+        run: terraform output -raw ec2_public_ip > ec2ip.txt
         working-directory: terraform
 
       - name: Save EC2 Public IP as artifact
@@ -96,9 +96,10 @@ jobs:
 
       - name: Deploy to Minikube
         run: |
-            EC2_PUBLIC_IP=$(cat ec2ip.txt)
+            EC2_PUBLIC_IP=$(cat terraform/ec2ip.txt)
+            echo "Using EC2_PUBLIC_IP: $EC2_PUBLIC_IP"
             ssh -o StrictHostKeyChecking=no ubuntu@$EC2_PUBLIC_IP << 'EOF'
-            minikube start
-            kubectl apply -f /home/ubuntu/app/deployment.yaml
-            kubectl apply -f /home/ubuntu/app/service.yaml
+                minikube start
+                kubectl apply -f /home/ubuntu/app/deployment.yaml
+                kubectl apply -f /home/ubuntu/app/service.yaml
             EOF
