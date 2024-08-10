@@ -10,7 +10,7 @@ resource "aws_instance" "minikube_instance" {
   user_data = file("${path.module}/../scripts/main.sh")
 
   provisioner "file" {
-    source      = "../../k8s"
+    source      = "/k8s"
     destination = "/home/ubuntu/app"
 
     connection {
