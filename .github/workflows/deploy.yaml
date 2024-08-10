@@ -40,7 +40,10 @@ jobs:
           # name: ec2-public-ip
 
       - name: Load EC2 Public IP
-        run:  EC2_PUBLIC_IP = 'cat ec2ip.txt'
+        id: load_ip
+        run: |
+          EC2_PUBLIC_IP=$(cat ec2ip.txt)
+          echo "EC2_PUBLIC_IP=$EC2_PUBLIC_IP" >> $GITHUB_ENV
 
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
