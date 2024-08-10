@@ -49,3 +49,4 @@ jobs:
       with:
         name: ec2-public-ip
         path: ec2ip.txt
+      working-directory: terraform
