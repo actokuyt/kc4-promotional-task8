@@ -50,6 +50,12 @@ jobs:
           name: ec2-public-ip
           path: terraform/ec2ip.txt
 
+      - name: Save state as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: state
+          path: terraform/terraform.tfstate
+
   docker-containerize:
     needs: terraform-provision
     runs-on: ubuntu-latest
@@ -96,7 +102,7 @@ jobs:
 
       - name: Deploy to Minikube
         run: |
-            EC2_PUBLIC_IP=$(cat terraform/ec2ip.txt)
+            EC2_PUBLIC_IP=$(cat ec2ip.txt)
             echo "Using EC2_PUBLIC_IP: $EC2_PUBLIC_IP"
             ssh -o StrictHostKeyChecking=no ubuntu@$EC2_PUBLIC_IP << 'EOF'
                 minikube start
