@@ -62,5 +62,5 @@ module "ec2" {
   key_name      = "ec2ssh"
   public_sg_id  = module.sg.public_sg_id
   public_subnet_id = module.subnet.subnet_id
-  private_key_path = "ec2ssh.pem"
+  private_key_path = var.private_key_path
 }
