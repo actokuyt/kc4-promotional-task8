@@ -41,3 +41,8 @@ resource "aws_network_acl" "public" {
     to_port    = 0
   }
 }
+
+resource "aws_network_acl_association" "public_main" {
+  network_acl_id = aws_network_acl.public.id
+  subnet_id      = aws_subnet.public.id
+}
