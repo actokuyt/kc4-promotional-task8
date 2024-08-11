@@ -44,5 +44,5 @@ resource "aws_network_acl" "public" {
 
 resource "aws_network_acl_association" "public_main" {
   network_acl_id = aws_network_acl.public.id
-  subnet_id      = aws_subnet.public.id
+  subnet_id      = var.public_subnet_id
 }

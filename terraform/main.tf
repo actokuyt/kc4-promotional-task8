@@ -52,6 +52,7 @@ module "nacl" {
   source = "./nacl"
 
   vpc_id = module.vpc.vpc_id
+  public_subnet_id  = module.subnet.subnet_id
 }
 
 module "ec2" {

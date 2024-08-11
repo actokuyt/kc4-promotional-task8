@@ -5,7 +5,15 @@ The Objective for this task is to set up a complete CI/CD pipeline for a simple 
 ## Notes:
 In a production environment, the terraform state file is stored on the cloud, using services such as AWS S3, from where it is accessed to facilitate the provision and maintainance of the infrastructure for the app, this is to ensure persistence and coherence of the terraform provisioned infrastructure. I'll be ommiting that for simplicity sake and to focus on the actual flow of the applicationn code from the developer to the hosting server, from where it can be served to the user.
 
-[Docker Image](https://hub.docker.com/repository/docker/actokuyt/kc4-cicd-app/general)
+## Deliverables
+
+* Documentation: [readme](./readme.md)
+* Screenshots: [readme](./readme.md)
+* Application Code: [app code](./app.py)
+* Docker Image: [Docker Image](https://hub.docker.com/repository/docker/actokuyt/kc4-cicd-app/general)
+* Terraform Modules: [terraform modules](./terraform/)
+* Kubernetes Mainfests: [k8s](./k8s/)
+
 
 ## Step 1 (Prepare the Code Repository)
 
