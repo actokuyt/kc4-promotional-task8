@@ -44,4 +44,5 @@ jobs:
                 minikube start
                 kubectl apply -f /home/ubuntu/app/deployment.yaml
                 kubectl apply -f /home/ubuntu/app/service.yaml
+                kubectl port-forward service/kodecamp-devops-bootcamp-service 8080:80
             EOF
