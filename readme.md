@@ -190,3 +190,7 @@ Now, using the ec2 public ip output we got from the terraform provisioning, we c
 ## Step 4 (Automate Deployment with GitHub Actions)
 
 At this point we have our app ready to be deployed, we can go ahead and push our changes to github, ensuring our workflow configurations has been set to trigger on push to our master branch, and our github secrets all well configured.
+
+![minikube deploy](images/Screenshot%202024-08-11%20at%202.30.23%20PM.png)
+
+We have successfully deployed our app to the minikube cluster on our ec2 instance.

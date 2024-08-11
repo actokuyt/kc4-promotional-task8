@@ -5,7 +5,7 @@ resource "aws_security_group" "public" {
     Name = "PublicSG"
   }
 
-    ingress {
+  ingress {
     description = "Allow HTTP traffic"
     from_port   = 80
     to_port     = 80

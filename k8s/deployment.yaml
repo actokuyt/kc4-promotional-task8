@@ -24,14 +24,3 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
-        env:
-        - name: MESSAGE
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: MESSAGE
-        - name: PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: app-secret
-              key: PASSWORD
