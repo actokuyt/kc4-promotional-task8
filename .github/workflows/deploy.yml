@@ -27,15 +27,21 @@ jobs:
           docker push actokuyt/certified-devops-app
 
   minikube-deploy:
+    needs: docker-containerize
     runs-on: ubuntu-latest
     steps:
-    - name: SSH into EC2 and deploy to Minikube
-      uses: appleboy/ssh-action@v0.1.1
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ubuntu
-        key: ${{ secrets.SSH_KEY }}
-        script: |
-          kubectl apply -f ~/path/to/k8s/deployment.yaml
-          kubectl apply -f ~/path/to/k8s/service.yaml
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
 
+      - name: Deploy to Minikube
+        run: |
+            ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
+                minikube start
+                kubectl apply -f /home/ubuntu/app/deployment.yaml
+                kubectl apply -f /home/ubuntu/app/service.yaml
+            EOF
