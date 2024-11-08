@@ -26,22 +26,22 @@ jobs:
           docker build -t actokuyt/certified-devops-app .
           docker push actokuyt/certified-devops-app
 
-  minikube-deploy:
-    needs: docker-containerize
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # minikube-deploy:
+  #   needs: docker-containerize
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
         
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY }}
+  #     - name: Set up SSH
+  #       uses: webfactory/ssh-agent@v0.5.3
+  #       with:
+  #         ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - name: Deploy to Minikube
-        run: |
-            ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-                minikube start
-                kubectl apply -f /home/ubuntu/app/deployment.yaml
-                kubectl apply -f /home/ubuntu/app/service.yaml
-            EOF
+  #     - name: Deploy to Minikube
+  #       run: |
+  #           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
+  #               minikube start
+  #               kubectl apply -f /home/ubuntu/app/deployment.yaml
+  #               kubectl apply -f /home/ubuntu/app/service.yaml
+  #           EOF
